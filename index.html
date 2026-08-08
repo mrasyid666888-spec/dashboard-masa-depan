@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Keuangan Sederhana</title>
+    <!-- Tailwind CSS untuk styling cepat dan rapi -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome untuk ikon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-slate-900 text-slate-100 font-sans min-p-4 md:p-8">
+
+    <div class="max-w-4xl mx-auto space-y-6">
+        <!-- HEADER -->
+        <header class="flex justify-between items-center bg-slate-800 p-6 rounded-2xl border border-slate-700 shadow-lg">
+            <div>
+                <h1 class="text-2xl font-bold tracking-wide text-sky-400"><i class="fas fa-wallet mr-2"></i> TabunganKu</h1>
+                <p class="text-slate-400 text-sm">Kelola dana masuk dan dana keluar dengan mudah.</p>
+            </div>
+            <button onclick="resetData()" class="text-xs bg-red-500/20 text-red-400 border border-red-500/30 px-3 py-2 rounded-lg hover:bg-red-500 hover:text-white transition">
+                <i class="fas fa-trash-alt mr-1"></i> Reset Data
+            </button>
+        </header>
+
+        <!-- KARTU RINGKASAN (SUMMARY CARDS) -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div class="bg-slate-800 p-5 rounded-2xl border border-slate-700 shadow">
+                <p class="text-slate-400 text-sm">Total Saldo</p>
+                <h2 id="totalSaldo" class="text-3xl font-extrabold text-white mt-1">Rp 0</h2>
+            </div>
+            <div class="bg-slate-800 p-5 rounded-2xl border border-slate-700 shadow">
+                <p class="text-slate-400 text-sm">Total Dana Masuk</p>
+                <h2 id="totalMasuk" class="text-3xl font-extrabold text-emerald-400 mt-1">Rp 0</h2>
+            </div>
+            <div class="bg-slate-800 p-5 rounded-2xl border border-slate-700 shadow">
+                <p class="text-slate-400 text-sm">Total Dana Keluar</p>
+                <h2 id="totalKeluar" class="text-3xl font-extrabold text-rose-400 mt-1">Rp 0</h2>
+            </div>
+        </div>
+
+        <!-- FORM INPUT TRANSAKSI -->
+        <div class="bg-slate-800 p-6 rounded-2xl border border-slate-700 shadow-lg">
+            <h3 class="text-lg font-semibold mb-4 text-slate-200"><i class="fas fa-plus-circle mr-2 text-sky-400"></i> Tambah Transaksi Baru</h3>
+            <form id="transaksiForm" class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                <div>
+                    <label class="block text-xs text-slate-400 mb-1">Keterangan</label>
+                    <input type="text" id="keterangan" required placeholder="Contoh: Gaji / Belanja" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-sky-500">
+                </div>
+                <div>
+                    <label class="block text-xs text-slate-400 mb-1">Jumlah (Rp)</label>
+                    <input type="number" id="jumlah" required placeholder="Contoh: 50000" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-sky-500">
+                </div>
+                <div>
+                    <label class="block text-xs text-slate-400 mb-1">Tipe Transaksi</label>
+                    <select id="tipe" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-sky-500">
+                        <option value="masuk">Dana Masuk</option>
+                        <option value="keluar">Dana Keluar</option>
+                    </select>
+                </div>
+                <div class="flex items-end">
+                    <button type="submit" class="w-full bg-sky-500 hover:bg-sky-600 text-white font-semibold rounded-xl py-2.5 text-sm transition shadow-lg shadow-sky-500/20">
+                        Simpan
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <!-- TABEL RIWAYAT TRANSAKSI -->
+        <div class="bg-slate-800 p-6 rounded-2xl border border-slate-700 shadow-lg">
+            <h3 class="text-lg font-semibold mb-4 text-slate-200"><i class="fas fa-history mr-2 text-sky-400"></i> Riwayat Transaksi</h3>
+            <div class="overflow-x-auto">
+                <table class="w-full text-left border-collapse">
+                    <thead>
+                        <tr class="border-b border-slate-700 text-slate-400 text-xs uppercase">
+                            <th class="py-3 px-4">Keterangan</th>
+                            <th class="py-3 px-4">Tipe</th>
+                            <th class="py-3 px-4">Jumlah</th>
+                            <th class="py-3 px-4 text-center">Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabelTransaksi" class="divide-y divide-slate-700/50 text-sm">
+                        <!-- Data akan dimasukkan lewat Javascript -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCRIPT LOGIKA DASHBOARD -->
+    <script>
+        let transaksiList = JSON.parse(localStorage.getItem('transaksi')) || [];
+
+        const form = document.getElementById('transaksiForm');
+        const keteranganInput = document.getElementById('keterangan');
+        const jumlahInput = document.getElementById('jumlah');
+        const tipeInput = document.getElementById('tipe');
+        
+        const totalSaldoEl = document.getElementById('totalSaldo');
+        const totalMasukEl = document.getElementById('totalMasuk');
+        const totalKeluarEl = document.getElementById('totalKeluar');
+        const tabelTransaksiEl = document.getElementById('tabelTransaksi');
+
+        function formatRupiah(angka) {
+            return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(angka);
+        }
+
+        function updateDashboard() {
+            tabelTransaksiEl.innerHTML = '';
+            let totalMasuk = 0;
+            let totalKeluar = 0;
+
+            if (transaksiList.length === 0) {
+                tabelTransaksiEl.innerHTML = `<tr><td colspan="4" class="text-center py-6 text-slate-500">Belum ada transaksi tercatat.</td></tr>`;
+            }
+
+            transaksiList.forEach((item, index) => {
+                if (item.tipe === 'masuk') {
+                    totalMasuk += Number(item.jumlah);
+                } else {
+                    totalKeluar += Number(item.jumlah);
+                }
+
+                const row = document.createElement('tr');
+                row.className = "hover:bg-slate-700/30 transition";
+                row.innerHTML = `
+                    <td class="py-3 px-4 font-medium text-white">${item.keterangan}</td>
+                    <td class="py-3 px-4">
+                        <span class="px-2.5 py-1 rounded-full text-xs font-semibold ${item.tipe === 'masuk' ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20' : 'bg-rose-500/10 text-rose-400 border border-rose-500/20'}">
+                            ${item.tipe === 'masuk' ? 'Masuk' : 'Keluar'}
+                        </span>
+                    </td>
+                    <td class="py-3 px-4 font-semibold ${item.tipe === 'masuk' ? 'text-emerald-400' : 'text-rose-400'}">
+                        ${item.tipe === 'masuk' ? '+' : '-'} ${formatRupiah(item.jumlah)}
+                    </td>
+                    <td class="py-3 px-4 text-center">
+                        <button onclick="hapusTransaksi(${index})" class="text-slate-500 hover:text-red-400 transition">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </td>
+                `;
+                tabelTransaksiEl.appendChild(row);
+            });
+
+            let saldoAkhir = totalMasuk - totalKeluar;
+            totalSaldoEl.innerText = formatRupiah(saldoAkhir);
+            totalMasukEl.innerText = formatRupiah(totalMasuk);
+            totalKeluarEl.innerText = formatRupiah(totalKeluar);
+
+            localStorage.setItem('transaksi', JSON.stringify(transaksiList));
+        }
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const baru = {
+                keterangan: keteranganInput.value,
+                jumlah: Number(jumlahInput.value),
+                tipe: tipeInput.value
+            };
+            transaksiList.push(baru);
+            keteranganInput.value = '';
+            jumlahInput.value = '';
+            updateDashboard();
+        });
+
+        function hapusTransaksi(index) {
+            transaksiList.splice(index, 1);
+            updateDashboard();
+        }
+
+        function resetData() {
+            if (confirm("Yakin ingin menghapus semua riwayat transaksi?")) {
+                transaksiList = [];
+                updateDashboard();
+            }
+        }
+
+        // Jalankan saat pertama buka
+        updateDashboard();
+    </script>
+</body>
+</html>
