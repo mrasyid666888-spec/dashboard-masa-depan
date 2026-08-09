@@ -82,16 +82,49 @@
         <i class="fas fa-sign-out-alt mr-1"></i> Logout
     </button>
 </div>
-    <!-- === TEMPEL DI SINI (DI BAWAH BODY, DI ATAS DIV UTAMA) === -->
-    <div id="loginOverlay" style="display:none;" class="fixed inset-0 bg-slate-900 flex items-center justify-center z-50">
-        <div class="bg-slate-800 p-8 rounded-2xl shadow-xl w-full max-w-sm border border-slate-700">
+    <div id="loginOverlay" style="display:none;" class="login-split-container">
+    <!-- SISI KIRI: Background Foto Galaksi Ungu + Form Login -->
+    <div class="login-side-left">
+        <div class="w-full max-w-sm p-8 rounded-2xl backdrop-blur-md bg-slate-900/60 border border-slate-700/50 shadow-2xl text-slate-100">
             <h2 class="text-2xl font-bold mb-6 text-center text-sky-400">Login dulu yaaaa</h2>
-            <input type="text" id="user" placeholder="Username" class="w-full bg-slate-700 p-2 rounded-lg mb-4 text-white border border-slate-600">
-            <input type="password" id="pass" placeholder="Password" class="w-full bg-slate-700 p-2 rounded-lg mb-4 text-white border border-slate-600">
-            <button onclick="checkLogin()" class="w-full bg-sky-600 hover:bg-sky-500 text-white font-bold py-2 rounded-lg">Masuk</button>
-            <p id="errorMsg" class="text-red-400 text-sm mt-3 text-center hidden">Username atau password salah!</p>
+            <div class="mb-4">
+                <input type="text" id="user" placeholder="Username" class="w-full bg-slate-800/80 border border-slate-700 p-3 rounded-xl text-white outline-none focus:border-sky-400 transition">
+            </div>
+            <div class="mb-6">
+                <input type="password" id="pass" placeholder="Password" class="w-full bg-slate-800/80 border border-slate-700 p-3 rounded-xl text-white outline-none focus:border-sky-400 transition">
+            </div>
+            <button onclick="checkLogin()" class="w-full bg-sky-600 hover:bg-sky-500 text-white font-bold py-3 rounded-xl transition shadow-lg shadow-sky-500/30">
+                Masuk
+            </button>
+            <p id="errorMsg" class="text-red-400 text-sm mt-3 text-center hidden font-medium">Username atau password salah!</p>
         </div>
     </div>
+
+    <!-- SISI KANAN: Background Putih Bersih & Teks Bebas Diedit -->
+    <div class="login-side-right">
+        <div class="max-w-md">
+            <span class="inline-block px-3 py-1 mb-4 text-xs font-semibold text-blue-600 bg-blue-50 rounded-full border border-blue-100">
+                Welcome Panel
+            </span>
+            <h1 class="text-4xl font-black text-slate-900 tracking-tight mb-4">
+                Kelola Keuangan Jadi Lebih Mudah & Modern.
+            </h1>
+            <p class="text-slate-600 text-base leading-relaxed mb-6">
+                Selamat datang di dashboard pribadi Anda. Pantau catatan pemasukan, pengeluaran, serta riwayat transaksi harian secara aman dan terintegrasi dalam satu tempat.
+            </p>
+            <div class="space-y-3 border-t border-slate-100 pt-6">
+                <div class="flex items-center gap-3 text-slate-700 text-sm font-medium">
+                    <div class="w-2 h-2 rounded-full bg-blue-600"></div>
+                    <span>Sesi login aman dengan penyimpanan lokal</span>
+                </div>
+                <div class="flex items-center gap-3 text-slate-700 text-sm font-medium">
+                    <div class="w-2 h-2 rounded-full bg-blue-600"></div>
+                    <span>Tampilan responsif dan cepat diakses</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
     <script>
     // 1. Cek status saat halaman dimuat (Paling atas di luar fungsi lain)
