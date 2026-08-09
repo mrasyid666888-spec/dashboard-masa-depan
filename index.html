@@ -27,7 +27,34 @@
         </div>
     </div>
 
-    <script>
+    <script>// 1. Cek otomatis pas halaman dibuka/di-refresh
+    window.onload = function() {
+        if (localStorage.getItem('isLoggedIn') === 'true') {
+            document.getElementById('loginOverlay').style.display = 'none';
+        }
+    }
+
+    // 2. Fungsi waktu tombol Masuk diklik
+    function checkLogin() {
+        let u = document.getElementById('user').value;
+        let p = document.getElementById('pass').value;
+
+        if (u === 'admin' && p === 'rahasia123') {
+            localStorage.setItem('isLoggedIn', 'true');
+            document.getElementById('loginOverlay').style.display = 'none';
+        } else {
+            document.getElementById('errorMsg').classList.remove('hidden');
+        }
+    }
+
+    // 3. Fungsi waktu tombol Logout diklik
+    function logout() {
+        localStorage.removeItem('isLoggedIn');
+        document.getElementById('loginOverlay').style.display = 'flex';
+        document.getElementById('user').value = '';
+        document.getElementById('pass').value = '';
+        document.getElementById('errorMsg').classList.add('hidden');
+    }
         function checkLogin() {
             let u = document.getElementById('user').value;
             let p = document.getElementById('pass').value;
