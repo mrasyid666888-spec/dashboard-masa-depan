@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head> 
     <style>
-    /* 1. Background khusus saat BERHASIL MASUK (Dashboard di dalam) */
+    /* 1. Background Dashboard (Pas udah masuk) */
     body.bg-dashboard {
         background-color: transparent !important;
         background-image: linear-gradient(rgba(3, 7, 18, 0.75), rgba(3, 7, 18, 0.85)), url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe') !important;
@@ -20,24 +20,6 @@
         background-attachment: fixed !important;
     }
 
-    /* 2. Background khusus saat di HALAMAN LOGIN */
-    #loginOverlay {
-        /* Ganti link di bawah dengan foto impian lu buat login */
-        background: linear-gradient(rgba(15, 23, 42, 0.7), rgba(3, 7, 18, 0.85)), url('https://i.pinimg.com/736x/bb/ee/6d/bbee6dc88ecb56930a6beca101fa40cd.jpg');
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-    }
-
-    /* Kotak kartu login biar tetap gaya kaca mewah */
-    #loginOverlay > div {
-        backdrop-filter: blur(14px);
-        -webkit-backdrop-filter: blur(14px);
-        background-color: rgba(30, 41, 59, 0.75) !important;
-        border: 1px solid rgba(56, 189, 248, 0.4);
-        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.9), 0 0 35px rgba(56, 189, 248, 0.2);
-    }
-        /* Mengubah semua kotak kartu dashboard jadi kaca transparan / gelembung */
     body.bg-dashboard .max-w-4xl > div, 
     body.bg-dashboard .grid > div, 
     body.bg-dashboard form {
@@ -46,6 +28,50 @@
         -webkit-backdrop-filter: blur(16px) !important;
         border: 1px solid rgba(255, 255, 255, 0.15) !important;
         box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37) !important;
+    }
+
+    /* 2. Tampilan Split Layout Login */
+    #loginOverlay {
+        display: flex;
+        position: fixed;
+        inset: 0;
+        z-index: 50;
+        background-color: #ffffff;
+    }
+
+    .login-split-container {
+        display: flex;
+        width: 100vw;
+        height: 100vh;
+        overflow: hidden;
+    }
+
+    /* Sisi Kiri: Background Foto Galaksi Ungu Lu */
+    .login-side-left {
+        flex: 1.1;
+        background: linear-gradient(rgba(15, 23, 42, 0.4), rgba(3, 7, 18, 0.6)), url('https://i.pinimg.com/736x/bb/ee/6d/bbee6dc88ec56930a6beca101fa40cd.jpg');
+        background-size: cover;
+        background-position: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 2rem;
+    }
+
+    /* Sisi Kanan: Background Putih & Kata-kata */
+    .login-side-right {
+        flex: 0.9;
+        background-color: #ffffff;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 4rem 5rem;
+        color: #0f172a;
+    }
+
+    @media (max-width: 768px) {
+        .login-side-right { display: none; }
+        .login-side-left { flex: 1; }
     }
 </style>
 <body class="bg-dashboard text-slate-100 font-sans min-h-screen p-4 md:p-8">
