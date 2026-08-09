@@ -53,21 +53,22 @@
     </div>
 
     <script>
-    // 1. Cek status saat halaman dimuat
-    if (localStorage.getItem('statusLogin') !== 'sudah_masuk') {
+    // 1. Cek status saat halaman dimuat (Paling atas di luar fungsi lain)
+    if (localStorage.getItem('statusLogin') === 'sudah_masuk') {
+        document.getElementById('loginOverlay').style.display = 'none';
+        document.body.classList.add('bg-dashboard');
+    } else {
         document.getElementById('loginOverlay').style.display = 'flex';
     }
 
-    // 2. Fungsi Login (Gunakan salah satu username/password yang diinginkan, misal admin / rahasia123)
+    // 2. Fungsi Login
     function checkLogin() {
         let u = document.getElementById('user').value;
         let p = document.getElementById('pass').value;
 
         if (u === 'saya' && p === '123123') {
-            // Kalau statusnya udah masuk, pasang kelas background dashboard ke body
-if (localStorage.getItem('statusLogin') === 'sudah_masuk') {
-    document.body.classList.add('bg-dashboard');
-}
+            localStorage.setItem('statusLogin', 'sudah_masuk');
+            document.body.classList.add('bg-dashboard'); // Tambahin background dashboard pas sukses login
             document.getElementById('loginOverlay').style.display = 'none';
         } else {
             document.getElementById('errorMsg').classList.remove('hidden');
@@ -77,12 +78,13 @@ if (localStorage.getItem('statusLogin') === 'sudah_masuk') {
     // 3. Fungsi Logout
     function logout() {
         localStorage.removeItem('statusLogin');
+        document.body.classList.remove('bg-dashboard'); // Hapus background dashboard pas logout
         document.getElementById('loginOverlay').style.display = 'flex';
         document.getElementById('user').value = '';
         document.getElementById('pass').value = '';
         document.getElementById('errorMsg').classList.add('hidden');
     }
-    </script>
+</script>
     <!-- === BATAS KODE LOGIN === -->
 
     <div class="max-w-4xl mx-auto space-y-6">
