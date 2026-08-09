@@ -10,40 +10,34 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head> 
     <style>
-    /* Background mewah dengan gradien warna yang kaya dan hidup */
+    /* Background pakai foto/gambar pilihan lu */
     body.bg-mewah {
-        background-color: #090d16 !important;
-        background-image: 
-            radial-gradient(circle at 20% 20%, rgba(14, 165, 233, 0.35) 0%, transparent 45%),
-            radial-gradient(circle at 80% 80%, rgba(168, 85, 247, 0.3) 0%, transparent 50%),
-            radial-gradient(circle at 50% 50%, rgba(15, 23, 42, 0.9) 0%, #030712 100%) !important;
+        background-image: url('https://i.pinimg.com/736x/bb/ee/6d/bbee6dc88ecb56930a6beca101fa40cd.jpg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
         background-attachment: fixed !important;
         position: relative;
     }
 
-    /* Efek cahaya sorot warna-warni yang estetik di tengah */
+    /* Efek gelap transparan (biar fotonya agak redup dan teks/kotak login makin kontras & jelas) */
     body.bg-mewah::before {
         content: '';
         position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 60vmax;
-        height: 60vmax;
-        background: radial-gradient(circle, rgba(14, 165, 233, 0.2) 0%, rgba(168, 85, 247, 0.1) 50%, transparent 70%);
-        border-radius: 50%;
+        inset: 0;
+        background: rgba(3, 7, 18, 0.65); /* Atur tingkat kegelapan di angka 0.65 (bisa dinaikin/diturunin) */
         z-index: 0;
         pointer-events: none;
     }
 
-    /* Overlay login: Gelap solid elegan tapi gak nutupin background luar */
+    /* Overlay login saat pertama kali dibuka */
     #loginOverlay {
-        background-color: rgba(3, 7, 18, 0.75) !important;
+        background-color: rgba(3, 7, 18, 0.8) !important;
         backdrop-filter: blur(12px);
         -webkit-backdrop-filter: blur(12px);
     }
 
-    /* Kotak kartu login gaya kaca mewah ber-border cahaya */
+    /* Kotak kartu login */
     #loginOverlay > div {
         backdrop-filter: blur(20px);
         -webkit-backdrop-filter: blur(20px);
