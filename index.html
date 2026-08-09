@@ -10,38 +10,46 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head> 
     <style>
+    /* Background mewah dengan gradien warna yang kaya dan hidup */
     body.bg-mewah {
-        background-color: #030712 !important;
+        background-color: #090d16 !important;
         background-image: 
-            radial-gradient(circle at 15% 20%, rgba(56, 189, 248, 0.2) 0%, transparent 45%),
-            radial-gradient(circle at 85% 80%, rgba(147, 51, 234, 0.15) 0%, transparent 50%),
-            linear-gradient(135deg, #090d16 0%, #0f172a 50%, #020617 100%) !important;
+            radial-gradient(circle at 20% 20%, rgba(14, 165, 233, 0.35) 0%, transparent 45%),
+            radial-gradient(circle at 80% 80%, rgba(168, 85, 247, 0.3) 0%, transparent 50%),
+            radial-gradient(circle at 50% 50%, rgba(15, 23, 42, 0.9) 0%, #030712 100%) !important;
         background-attachment: fixed !important;
         position: relative;
     }
+
+    /* Efek cahaya sorot warna-warni yang estetik di tengah */
     body.bg-mewah::before {
         content: '';
         position: absolute;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        width: 50vmax;
-        height: 50vmax;
-        background: radial-gradient(circle, rgba(56, 189, 248, 0.12) 0%, transparent 65%);
+        width: 60vmax;
+        height: 60vmax;
+        background: radial-gradient(circle, rgba(14, 165, 233, 0.2) 0%, rgba(168, 85, 247, 0.1) 50%, transparent 70%);
         border-radius: 50%;
         z-index: 0;
         pointer-events: none;
     }
+
+    /* Overlay login: Gelap solid elegan tapi gak nutupin background luar */
     #loginOverlay {
-        background-color: #030712 !important; /* Jadi hitam pekat solid, dashboard di belakang gak bakal tembus */
+        background-color: rgba(3, 7, 18, 0.75) !important;
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
     }
-    }
+
+    /* Kotak kartu login gaya kaca mewah ber-border cahaya */
     #loginOverlay > div {
         backdrop-filter: blur(20px);
         -webkit-backdrop-filter: blur(20px);
-        background-color: rgba(15, 23, 42, 0.75) !important;
-        border: 1px solid rgba(56, 189, 248, 0.3);
-        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8), 0 0 30px rgba(56, 189, 248, 0.15);
+        background-color: rgba(15, 23, 42, 0.85) !important;
+        border: 1px solid rgba(56, 189, 248, 0.4);
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.9), 0 0 40px rgba(14, 165, 233, 0.2);
         position: relative;
         z-index: 10;
     }
