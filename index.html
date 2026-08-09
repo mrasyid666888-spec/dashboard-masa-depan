@@ -17,7 +17,7 @@
     </button>
 </div>
     <!-- === TEMPEL DI SINI (DI BAWAH BODY, DI ATAS DIV UTAMA) === -->
-    <div id="loginOverlay" class="fixed inset-0 bg-slate-900 flex items-center justify-center z-50">
+    <div id="loginOverlay" style="display:none;" class="fixed inset-0 bg-slate-900 flex items-center justify-center z-50">
         <div class="bg-slate-800 p-8 rounded-2xl shadow-xl w-full max-w-sm border border-slate-700">
             <h2 class="text-2xl font-bold mb-6 text-center text-sky-400">Login dulu yaaaa</h2>
             <input type="text" id="user" placeholder="Username" class="w-full bg-slate-700 p-2 rounded-lg mb-4 text-white border border-slate-600">
@@ -27,46 +27,28 @@
         </div>
     </div>
 
-    <script>// 1. Cek otomatis pas halaman dibuka/di-refresh
-    window.onload = function() {
-        if (localStorage.getItem('isLoggedIn') === 'true') {
-            document.getElementById('loginOverlay').style.display = 'none';
-        }
+    <script>
+    // 1. Cek status saat halaman dimuat
+    if (localStorage.getItem('statusLogin') !== 'sudah_masuk') {
+        document.getElementById('loginOverlay').style.display = 'flex';
     }
 
-    // 2. Fungsi waktu tombol Masuk diklik
+    // 2. Fungsi Login (Gunakan salah satu username/password yang diinginkan, misal admin / rahasia123)
     function checkLogin() {
         let u = document.getElementById('user').value;
         let p = document.getElementById('pass').value;
 
-        if (u === 'saya' && p === '1') {
-            localStorage.setItem('isLoggedIn', 'true');
+        if (u === 'admin' && p === 'rahasia123') {
+            localStorage.setItem('statusLogin', 'sudah_masuk');
             document.getElementById('loginOverlay').style.display = 'none';
         } else {
             document.getElementById('errorMsg').classList.remove('hidden');
         }
     }
 
-    // 3. Fungsi waktu tombol Logout diklik
+    // 3. Fungsi Logout
     function logout() {
-        localStorage.removeItem('isLoggedIn');
-        document.getElementById('loginOverlay').style.display = 'flex';
-        document.getElementById('user').value = '';
-        document.getElementById('pass').value = '';
-        document.getElementById('errorMsg').classList.add('hidden');
-    }
-        function checkLogin() {
-            let u = document.getElementById('user').value;
-            let p = document.getElementById('pass').value;
-            
-            if (u === 'admin' && p === 'rahasia123') {
-                document.getElementById('loginOverlay').style.display = 'none'; 
-            } else {
-                document.getElementById('errorMsg').classList.remove('hidden');
-            }
-        }
-        // Fungsi untuk Logout
-    function logout() {
+        localStorage.removeItem('statusLogin');
         document.getElementById('loginOverlay').style.display = 'flex';
         document.getElementById('user').value = '';
         document.getElementById('pass').value = '';
