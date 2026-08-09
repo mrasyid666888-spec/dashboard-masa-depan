@@ -37,6 +37,16 @@
         border: 1px solid rgba(56, 189, 248, 0.4);
         box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.9), 0 0 35px rgba(56, 189, 248, 0.2);
     }
+        /* Mengubah semua kotak kartu dashboard jadi kaca transparan / gelembung */
+    body.bg-dashboard .max-w-4xl > div, 
+    body.bg-dashboard .grid > div, 
+    body.bg-dashboard form {
+        background-color: rgba(255, 255, 255, 0.08) !important;
+        backdrop-filter: blur(16px) !important;
+        -webkit-backdrop-filter: blur(16px) !important;
+        border: 1px solid rgba(255, 255, 255, 0.15) !important;
+        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37) !important;
+    }
 </style>
 <body class="bg-dashboard text-slate-100 font-sans min-h-screen p-4 md:p-8">
 <!-- Baris 14: Tempatkan tombol ini di sini -->
