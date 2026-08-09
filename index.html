@@ -8,8 +8,36 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- FontAwesome untuk ikon -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-</head>
-<body class="bg-slate-900 text-slate-100 font-sans min-p-4 md:p-8">
+</head> <style>
+    .bg-mewah {
+        background-image: 
+            radial-gradient(at 50% 0%, rgba(51, 65, 85, 0.4) 0px, transparent 50%),
+            url('https://www.transparenttextures.com/patterns/dark-dotted-etched.png'),
+            linear-gradient(to bottom right, #0f172a, #030712);
+        background-size: cover, 300px 300px, cover;
+        background-position: center, center, center;
+        background-blend-mode: normal, overlay, normal;
+        position: relative;
+    }
+    .bg-mewah::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 30vmax;
+        height: 30vmax;
+        background: radial-gradient(circle, rgba(56, 189, 248, 0.1) 0%, transparent 70%);
+        border-radius: 50%;
+        z-index: -1;
+    }
+    #loginOverlay > div {
+        backdrop-filter: blur(10px);
+        background-color: rgba(30, 41, 59, 0.85);
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.1), 0 0 0 4px rgba(56, 189, 248, 0.1);
+    }
+</style>
+<body class="bg-slate-900 text-slate-100 font-sans min-p-4 md:p-8 bg-mewah">
 <!-- Baris 14: Tempatkan tombol ini di sini -->
 <div class="w-full flex justify-end mb-4">
     <button onclick="logout()" class="bg-red-600 hover:bg-red-500 text-white text-xs px-3 py-2 rounded-lg transition">
