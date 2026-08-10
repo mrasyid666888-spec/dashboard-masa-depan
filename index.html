@@ -304,12 +304,13 @@
                 const row = document.createElement('tr');
                 row.className = "hover:bg-slate-700/30 transition";
                 row.innerHTML = `
-                    <td class="py-3 px-4 font-medium text-white">${item.keterangan}</td>
-                    <td class="py-3 px-4">
-                        <span class="px-2.5 py-1 rounded-full text-xs font-semibold ${item.tipe === 'masuk' ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20' : 'bg-rose-500/10 text-rose-400 border border-rose-500/20'}">
-                            ${item.tipe === 'masuk' ? 'Masuk' : 'Keluar'}
-                        </span>
-                    </td>
+        <td class="py-3 px-4 font-medium text-white">${item.keterangan}</td>
+        <td class="py-3 px-4 text-slate-300">${item.tanggal}</td>
+        <td class="py-3 px-4">
+            <span class="px-2.5 py-1 rounded-full text-xs font-semibold ${item.tipe === 'masuk' ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20' : 'bg-rose-500/10 text-rose-400 border border-rose-500/20'}">
+                ${item.tipe === 'masuk' ? 'Masuk' : 'Keluar'}
+            </span>
+        </td>
                     <td class="py-3 px-4 font-semibold ${item.tipe === 'masuk' ? 'text-emerald-400' : 'text-rose-400'}">
                         ${item.tipe === 'masuk' ? '+' : '-'} ${formatRupiah(item.jumlah)}
                     </td>
@@ -333,10 +334,11 @@
         form.addEventListener('submit', function(e) {
             e.preventDefault();
             const baru = {
-                keterangan: keteranganInput.value,
-                jumlah: Number(jumlahInput.value),
-                tipe: tipeInput.value
-            };
+            keterangan: keteranganInput.value,
+            tanggal: document.getElementById('tanggal').value,
+            jumlah: Number(jumlahInput.value),
+            tipe: tipeInput.value
+        };
             transaksiList.push(baru);
             keteranganInput.value = '';
             jumlahInput.value = '';
