@@ -359,6 +359,18 @@
 
         // Jalankan saat pertama buka
         updateDashboard();
+        // Fitur Pencarian Real-time untuk Tabel Riwayat
+const inputPencarian = document.getElementById('inputPencarian');
+if (inputPencarian) {
+    inputPencarian.addEventListener('keyup', function() {
+        const keyword = this.value.toLowerCase();
+        const rows = document.querySelectorAll('#tabelTransaksi tr');
+        rows.forEach(row => {
+            const text = row.innerText.toLowerCase();
+            row.style.display = text.includes(keyword) ? '' : 'none';
+        });
+    });
+}
     </script>
 </body>
 </html>
