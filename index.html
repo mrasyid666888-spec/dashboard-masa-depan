@@ -61,15 +61,30 @@
         padding: 2rem;
     }
 
-    /* SISI KANAN: Background Putih Bersih & Teks Bebas Diedit */
     .login-side-right {
         flex: 0.9;
-        background-color: #ffffff;
+        /* Ganti background putih jadi gradasi ungu gelap/malam yang elegan */
+        background: linear-gradient(135deg, #1e1b4b 0%, #0f0c1b 100%) !important;
         display: flex;
         flex-direction: column;
         justify-content: center;
         padding: 4rem 5rem;
-        color: #0f172a;
+        color: #f8fafc !important; /* Warna teks jadi putih/terang */
+    }
+
+    /* Menyesuaikan warna teks di sebelah kanan biar tetap terbaca jelas */
+    .login-side-right h1 {
+        color: #ffffff !important;
+    }
+
+    .login-side-right p, .login-side-right span {
+        color: #cbd5e1 !important;
+    }
+
+    .login-side-right .bg-blue-50 {
+        background-color: rgba(56, 189, 248, 0.1) !important;
+        color: #38bdf8 !important;
+        border-color: rgba(56, 189, 248, 0.2) !important;
     }
 
     /* Responsif untuk HP */
