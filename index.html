@@ -3,20 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TabunganKu - Dark Mobile Style</title>
+    <title>TabunganKu - Dark Mobile Style + Rekapan</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         body {
-            background-color: #0f172a; /* Latar belakang luar gelap */
+            background-color: #0f172a;
             color: #f8fafc;
         }
-        /* Style pembungkus mirip layar HP */
         .mobile-container {
             max-width: 480px;
             margin: auto;
             min-height: 100vh;
-            background-color: #1e293b; /* Warna kontainer utama (Slate gelap) */
+            background-color: #1e293b;
             position: relative;
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
         }
@@ -26,11 +25,11 @@
 
     <div class="mobile-container flex flex-col justify-between pb-24">
         
-        <div>
+        <div id="tabHome" class="tab-content">
             <div class="p-6 bg-[#0f172a] rounded-b-[2.5rem] border-b border-slate-800 shadow-md">
                 <div class="flex justify-between items-center mb-6">
                     <div>
-                        <h1 class="text-xl font-bold text-white">Halo! 👋</h1>
+                        <h1 class="text-xl font-bold text-white">Halo, Rasyid! 👋</h1>
                         <p class="text-xs text-slate-400 mt-0.5">Yuk cek uang kamu hari ini</p>
                     </div>
                     <button onclick="logout()" class="w-10 h-10 bg-slate-800 border border-slate-700 rounded-full flex items-center justify-center shadow hover:bg-slate-700 transition" title="Logout">
@@ -48,7 +47,7 @@
             </div>
 
             <div class="px-6 -mt-4">
-                <div class="bg-slate-900/90 backdrop-blur p-5 rounded-3xl shadow-lg border border-slate-800">
+                <div class="bg-slate-900/95 backdrop-blur p-5 rounded-3xl shadow-lg border border-slate-800">
                     <h3 class="text-sm font-bold text-slate-200 mb-3">Yuk Catat!</h3>
                     <div class="grid grid-cols-2 gap-3">
                         <button onclick="bukaForm('masuk')" class="flex items-center justify-center gap-2 py-3 px-4 bg-slate-800 border border-slate-700 rounded-2xl shadow-sm hover:border-emerald-500 hover:text-emerald-400 transition font-semibold text-xs text-slate-200">
@@ -89,10 +88,22 @@
             </div>
         </div>
 
+        <div id="tabRekap" class="tab-content hidden p-6">
+            <h2 class="text-lg font-bold text-white mb-1"><i class="fas fa-calendar-alt text-sky-400 mr-2"></i> Rekapan Bulanan</h2>
+            <p class="text-xs text-slate-400 mb-5">Ringkasan keuangan berdasarkan bulan transaksi.</p>
+            
+            <div id="containerRekapBulanan" class="space-y-3">
+                </div>
+        </div>
+
         <div class="fixed bottom-0 left-0 right-0 max-w-[480px] mx-auto bg-slate-900 border-t border-slate-800 py-3 px-6 flex justify-around items-center z-40 shadow-2xl">
-            <button onclick="pindahTab('home')" class="flex flex-col items-center text-sky-400">
+            <button onclick="pindahTab('home')" id="navHome" class="flex flex-col items-center text-sky-400 transition">
                 <i class="fas fa-home text-lg"></i>
                 <span class="text-[10px] mt-1 font-medium">Home</span>
+            </button>
+            <button onclick="pindahTab('rekap')" id="navRekap" class="flex flex-col items-center text-slate-500 hover:text-sky-400 transition">
+                <i class="fas fa-chart-bar text-lg"></i>
+                <span class="text-[10px] mt-1 font-medium">Rekapan</span>
             </button>
             <button onclick="resetData()" class="flex flex-col items-center text-slate-500 hover:text-red-400 transition">
                 <i class="fas fa-trash-alt text-lg"></i>
@@ -145,6 +156,7 @@
         const totalMasukEl = document.getElementById('totalMasuk');
         const totalKeluarEl = document.getElementById('totalKeluar');
         const tabelTransaksiEl = document.getElementById('tabelTransaksi');
+        const containerRekapBulanan = document.getElementById('containerRekapBulanan');
 
         tanggalInput.valueAsDate = new Date();
 
@@ -152,13 +164,22 @@
             return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(angka);
         }
 
+        // Fungsi Format Nama Bulan dari Tanggal (Format: YYYY-MM)
+        function formatBulan(tanggalStr) {
+            const [tahun, bulan] = tanggalStr.split('-');
+            const namaBulan = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
+            return `${namaBulan[parseInt(bulan) - 1]} ${tahun}`;
+        }
+
         function updateDashboard() {
             tabelTransaksiEl.innerHTML = '';
             let totalMasuk = 0;
             let totalKeluar = 0;
+            let rekapData = {};
 
             if (transaksiList.length === 0) {
                 tabelTransaksiEl.innerHTML = `<div class="text-center py-8 text-slate-500 text-xs bg-slate-900 rounded-2xl p-4 border border-slate-800">Belum ada transaksi tercatat.</div>`;
+                containerRekapBulanan.innerHTML = `<div class="text-center py-8 text-slate-500 text-xs bg-slate-900 rounded-2xl p-4 border border-slate-800">Belum ada data untuk direkap.</div>`;
             }
 
             transaksiList.forEach((item, index) => {
@@ -168,6 +189,20 @@
                     totalKeluar += Number(item.jumlah);
                 }
 
+                // Hitung Rekapan Per Bulan
+                if (item.tanggal) {
+                    const kunciBulan = item.tanggal.substring(0, 7); // Mengambil YYYY-MM
+                    if (!rekapData[kunciBulan]) {
+                        rekapData[kunciBulan] = { masuk: 0, keluar: 0 };
+                    }
+                    if (item.tipe === 'masuk') {
+                        rekapData[kunciBulan].masuk += Number(item.jumlah);
+                    } else {
+                        rekapData[kunciBulan].keluar += Number(item.jumlah);
+                    }
+                }
+
+                // Render List Transaksi Home
                 const card = document.createElement('div');
                 card.className = "bg-slate-900 p-3.5 rounded-2xl border border-slate-800 shadow-sm flex items-center justify-between";
                 card.innerHTML = `
@@ -192,6 +227,35 @@
                 tabelTransaksiEl.appendChild(card);
             });
 
+            // Render Rekapan Bulanan
+            containerRekapBulanan.innerHTML = '';
+            const sortedBulan = Object.keys(rekapData).sort().reverse(); // Urutkan dari bulan terbaru
+            
+            sortedBulan.forEach(bulan => {
+                const data = rekapData[bulan];
+                const sisaBulan = data.masuk - data.keluar;
+
+                const rekapCard = document.createElement('div');
+                rekapCard.className = "bg-slate-900 p-4 rounded-2xl border border-slate-800 space-y-2";
+                rekapCard.innerHTML = `
+                    <div class="flex justify-between items-center border-b border-slate-800 pb-2">
+                        <span class="text-xs font-bold text-sky-400">${formatBulan(bulan)}</span>
+                        <span class="text-[11px] font-semibold text-slate-300">Sisa: ${formatRupiah(sisaBulan)}</span>
+                    </div>
+                    <div class="flex justify-between text-xs pt-1">
+                        <div>
+                            <p class="text-[10px] text-slate-400">Masuk</p>
+                            <p class="font-bold text-emerald-400">${formatRupiah(data.masuk)}</p>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-[10px] text-slate-400">Keluar</p>
+                            <p class="font-bold text-rose-400">${formatRupiah(data.keluar)}</p>
+                        </div>
+                    </div>
+                `;
+                containerRekapBulanan.appendChild(rekapCard);
+            });
+
             let saldoAkhir = totalMasuk - totalKeluar;
             totalSaldoEl.innerText = formatRupiah(saldoAkhir);
             totalMasukEl.innerText = formatRupiah(totalMasuk);
@@ -199,7 +263,6 @@
 
             localStorage.setItem('transaksi', JSON.stringify(transaksiList));
 
-            // Status Badge
             const statusEl = document.getElementById('statusKeuangan');
             if (statusEl) {
                 if (totalMasuk === 0 && totalKeluar === 0) {
@@ -212,6 +275,26 @@
                     statusEl.className = "mt-2 inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-medium bg-rose-500/20 text-rose-400 border border-rose-500/30";
                     statusEl.innerHTML = '⚠️ Pengeluaran Tinggi';
                 }
+            }
+        }
+
+        // Fungsi Berpindah Tab Antara Home dan Rekapan
+        function pindahTab(tab) {
+            const tabHome = document.getElementById('tabHome');
+            const tabRekap = document.getElementById('tabRekap');
+            const navHome = document.getElementById('navHome');
+            const navRekap = document.getElementById('navRekap');
+
+            if (tab === 'home') {
+                tabHome.classList.remove('hidden');
+                tabRekap.classList.add('hidden');
+                navHome.className = "flex flex-col items-center text-sky-400 transition";
+                navRekap.className = "flex flex-col items-center text-slate-500 hover:text-sky-400 transition";
+            } else {
+                tabHome.classList.add('hidden');
+                tabRekap.classList.remove('hidden');
+                navRekap.className = "flex flex-col items-center text-sky-400 transition";
+                navHome.className = "flex flex-col items-center text-slate-500 hover:text-sky-400 transition";
             }
         }
 
@@ -261,7 +344,6 @@
             }
         }
 
-        // Fitur Pencarian Real-time
         const inputPencarian = document.getElementById('inputPencarian');
         if (inputPencarian) {
             inputPencarian.addEventListener('keyup', function() {
