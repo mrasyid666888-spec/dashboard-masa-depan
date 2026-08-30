@@ -3,22 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TabunganKu - Mobile Style</title>
+    <title>TabunganKu - Dark Mobile Style</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         body {
-            background-color: #f3f4f6;
-            color: #1f2937;
+            background-color: #0f172a; /* Latar belakang luar gelap */
+            color: #f8fafc;
         }
-        /* Style khusus untuk wrapper mirip HP di layar desktop */
+        /* Style pembungkus mirip layar HP */
         .mobile-container {
             max-width: 480px;
             margin: auto;
             min-height: 100vh;
-            background-color: #e5e7eb;
+            background-color: #1e293b; /* Warna kontainer utama (Slate gelap) */
             position: relative;
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
         }
     </style>
 </head>
@@ -27,38 +27,38 @@
     <div class="mobile-container flex flex-col justify-between pb-24">
         
         <div>
-            <div class="p-6 bg-[#d9dde0] rounded-b-[2.5rem] shadow-sm">
+            <div class="p-6 bg-[#0f172a] rounded-b-[2.5rem] border-b border-slate-800 shadow-md">
                 <div class="flex justify-between items-center mb-6">
                     <div>
-                        <h1 class="text-xl font-bold text-slate-800">Halo, Rasyid! 👋</h1>
-                        <p class="text-xs text-slate-600 mt-0.5">Yuk cek uang kamu hari ini</p>
+                        <h1 class="text-xl font-bold text-white">Halo, Rasyid! 👋</h1>
+                        <p class="text-xs text-slate-400 mt-0.5">Yuk cek uang kamu hari ini</p>
                     </div>
-                    <button onclick="logout()" class="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow hover:bg-slate-100 transition" title="Logout">
-                        <i class="fas fa-sign-out-alt text-slate-700 text-sm"></i>
+                    <button onclick="logout()" class="w-10 h-10 bg-slate-800 border border-slate-700 rounded-full flex items-center justify-center shadow hover:bg-slate-700 transition" title="Logout">
+                        <i class="fas fa-sign-out-alt text-rose-400 text-sm"></i>
                     </button>
                 </div>
 
                 <div class="text-center py-4">
-                    <div class="inline-block px-3 py-1 bg-white/60 backdrop-blur rounded-full text-xs font-semibold text-slate-700 mb-2 shadow-sm">
+                    <div class="inline-block px-3 py-1 bg-slate-800 border border-slate-700 rounded-full text-xs font-semibold text-slate-300 mb-2 shadow-sm">
                         <span id="dompetLabel">Dompet Utama</span>
                     </div>
-                    <h2 id="totalSaldo" class="text-3xl font-black text-slate-900 tracking-tight">Rp 0</h2>
+                    <h2 id="totalSaldo" class="text-3xl font-black text-white tracking-tight">Rp 0</h2>
                     <div id="statusKeuangan" class="mt-2 inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium"></div>
                 </div>
             </div>
 
             <div class="px-6 -mt-4">
-                <div class="bg-[#fffdf5] p-5 rounded-3xl shadow-md border border-amber-100">
-                    <h3 class="text-sm font-bold text-slate-800 mb-3">Yuk Catat!</h3>
+                <div class="bg-slate-900/90 backdrop-blur p-5 rounded-3xl shadow-lg border border-slate-800">
+                    <h3 class="text-sm font-bold text-slate-200 mb-3">Yuk Catat!</h3>
                     <div class="grid grid-cols-2 gap-3">
-                        <button onclick="bukaForm('masuk')" class="flex items-center justify-center gap-2 py-3 px-4 bg-white border border-slate-200 rounded-2xl shadow-sm hover:border-emerald-500 hover:text-emerald-600 transition font-semibold text-xs text-slate-700">
-                            <span class="w-7 h-7 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center text-xs">
+                        <button onclick="bukaForm('masuk')" class="flex items-center justify-center gap-2 py-3 px-4 bg-slate-800 border border-slate-700 rounded-2xl shadow-sm hover:border-emerald-500 hover:text-emerald-400 transition font-semibold text-xs text-slate-200">
+                            <span class="w-7 h-7 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-xs">
                                 <i class="fas fa-arrow-down"></i>
                             </span>
                             Pemasukan
                         </button>
-                        <button onclick="bukaForm('keluar')" class="flex items-center justify-center gap-2 py-3 px-4 bg-white border border-slate-200 rounded-2xl shadow-sm hover:border-rose-500 hover:text-rose-600 transition font-semibold text-xs text-slate-700">
-                            <span class="w-7 h-7 rounded-full bg-rose-100 text-rose-600 flex items-center justify-center text-xs">
+                        <button onclick="bukaForm('keluar')" class="flex items-center justify-center gap-2 py-3 px-4 bg-slate-800 border border-slate-700 rounded-2xl shadow-sm hover:border-rose-500 hover:text-rose-400 transition font-semibold text-xs text-slate-200">
+                            <span class="w-7 h-7 rounded-full bg-rose-500/20 text-rose-400 flex items-center justify-center text-xs">
                                 <i class="fas fa-arrow-up"></i>
                             </span>
                             Pengeluaran
@@ -68,20 +68,20 @@
             </div>
 
             <div class="px-6 mt-4 grid grid-cols-2 gap-3">
-                <div class="bg-white p-3.5 rounded-2xl shadow-sm border border-slate-100">
-                    <p class="text-[11px] text-slate-500">Dana Masuk</p>
-                    <h4 id="totalMasuk" class="text-sm font-bold text-emerald-600 mt-0.5">Rp 0</h4>
+                <div class="bg-slate-900/80 p-3.5 rounded-2xl shadow-sm border border-slate-800">
+                    <p class="text-[11px] text-slate-400">Dana Masuk</p>
+                    <h4 id="totalMasuk" class="text-sm font-bold text-emerald-400 mt-0.5">Rp 0</h4>
                 </div>
-                <div class="bg-white p-3.5 rounded-2xl shadow-sm border border-slate-100">
-                    <p class="text-[11px] text-slate-500">Dana Keluar</p>
-                    <h4 id="totalKeluar" class="text-sm font-bold text-rose-600 mt-0.5">Rp 0</h4>
+                <div class="bg-slate-900/80 p-3.5 rounded-2xl shadow-sm border border-slate-800">
+                    <p class="text-[11px] text-slate-400">Dana Keluar</p>
+                    <h4 id="totalKeluar" class="text-sm font-bold text-rose-400 mt-0.5">Rp 0</h4>
                 </div>
             </div>
 
             <div class="px-6 mt-6">
                 <div class="flex justify-between items-center mb-3">
-                    <h3 class="text-sm font-bold text-slate-800">Riwayat Transaksi</h3>
-                    <input type="text" id="inputPencarian" placeholder="Cari..." class="bg-white border border-slate-200 rounded-xl px-3 py-1 text-xs text-slate-700 focus:outline-none focus:border-sky-500 w-36">
+                    <h3 class="text-sm font-bold text-slate-200">Riwayat Transaksi</h3>
+                    <input type="text" id="inputPencarian" placeholder="Cari..." class="bg-slate-900 border border-slate-800 rounded-xl px-3 py-1 text-xs text-slate-200 focus:outline-none focus:border-sky-500 w-36">
                 </div>
                 
                 <div id="tabelTransaksi" class="space-y-2.5">
@@ -89,12 +89,12 @@
             </div>
         </div>
 
-        <div class="fixed bottom-0 left-0 right-0 max-w-[480px] mx-auto bg-white border-t border-slate-200 py-3 px-6 flex justify-around items-center z-40 shadow-lg">
-            <button onclick="pindahTab('home')" class="flex flex-col items-center text-sky-600">
+        <div class="fixed bottom-0 left-0 right-0 max-w-[480px] mx-auto bg-slate-900 border-t border-slate-800 py-3 px-6 flex justify-around items-center z-40 shadow-2xl">
+            <button onclick="pindahTab('home')" class="flex flex-col items-center text-sky-400">
                 <i class="fas fa-home text-lg"></i>
                 <span class="text-[10px] mt-1 font-medium">Home</span>
             </button>
-            <button onclick="resetData()" class="flex flex-col items-center text-slate-400 hover:text-red-500 transition">
+            <button onclick="resetData()" class="flex flex-col items-center text-slate-500 hover:text-red-400 transition">
                 <i class="fas fa-trash-alt text-lg"></i>
                 <span class="text-[10px] mt-1 font-medium">Reset</span>
             </button>
@@ -102,11 +102,11 @@
 
     </div>
 
-    <div id="modalTransaksi" class="fixed inset-0 bg-black/50 z-50 hidden flex items-end sm:items-center justify-center p-0 sm:p-4">
-        <div class="bg-white w-full max-w-sm rounded-t-[2rem] sm:rounded-3xl p-6 shadow-2xl animate-fade-in">
+    <div id="modalTransaksi" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 hidden flex items-end sm:items-center justify-center p-0 sm:p-4">
+        <div class="bg-slate-900 border border-slate-800 w-full max-w-sm rounded-t-[2rem] sm:rounded-3xl p-6 shadow-2xl">
             <div class="flex justify-between items-center mb-4">
-                <h3 id="modalTitle" class="text-base font-bold text-slate-800">Tambah Transaksi</h3>
-                <button onclick="tutupForm()" class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-slate-500 hover:bg-slate-200">
+                <h3 id="modalTitle" class="text-base font-bold text-white">Tambah Transaksi</h3>
+                <button onclick="tutupForm()" class="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center text-slate-400 hover:bg-slate-700">
                     <i class="fas fa-times"></i>
                 </button>
             </div>
@@ -114,18 +114,18 @@
             <form id="transaksiForm" class="space-y-3">
                 <input type="hidden" id="tipe">
                 <div>
-                    <label class="block text-xs text-slate-500 mb-1">Keterangan</label>
-                    <input type="text" id="keterangan" required placeholder="Contoh: Gaji / Beli Makan" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-xs text-slate-800 focus:outline-none focus:border-sky-500">
+                    <label class="block text-xs text-slate-400 mb-1">Keterangan</label>
+                    <input type="text" id="keterangan" required placeholder="Contoh: Gaji / Beli Makan" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-sky-500">
                 </div>
                 <div>
-                    <label class="block text-xs text-slate-500 mb-1">Jumlah (Rp)</label>
-                    <input type="number" id="jumlah" required placeholder="Contoh: 50000" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-xs text-slate-800 focus:outline-none focus:border-sky-500">
+                    <label class="block text-xs text-slate-400 mb-1">Jumlah (Rp)</label>
+                    <input type="number" id="jumlah" required placeholder="Contoh: 50000" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-sky-500">
                 </div>
                 <div>
-                    <label class="block text-xs text-slate-500 mb-1">Tanggal</label>
-                    <input type="date" id="tanggal" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-xs text-slate-800 focus:outline-none focus:border-sky-500">
+                    <label class="block text-xs text-slate-400 mb-1">Tanggal</label>
+                    <input type="date" id="tanggal" required class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-sky-500">
                 </div>
-                <button type="submit" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-3 rounded-xl text-xs transition shadow-md mt-2">
+                <button type="submit" class="w-full bg-sky-600 hover:bg-sky-500 text-white font-bold py-3 rounded-xl text-xs transition shadow-lg shadow-sky-600/30 mt-2">
                     Simpan Transaksi
                 </button>
             </form>
@@ -146,7 +146,6 @@
         const totalKeluarEl = document.getElementById('totalKeluar');
         const tabelTransaksiEl = document.getElementById('tabelTransaksi');
 
-        // Set tanggal hari ini secara default ke form
         tanggalInput.valueAsDate = new Date();
 
         function formatRupiah(angka) {
@@ -159,7 +158,7 @@
             let totalKeluar = 0;
 
             if (transaksiList.length === 0) {
-                tabelTransaksiEl.innerHTML = `<div class="text-center py-8 text-slate-400 text-xs bg-white rounded-2xl p-4 border border-slate-100">Belum ada transaksi tercatat.</div>`;
+                tabelTransaksiEl.innerHTML = `<div class="text-center py-8 text-slate-500 text-xs bg-slate-900 rounded-2xl p-4 border border-slate-800">Belum ada transaksi tercatat.</div>`;
             }
 
             transaksiList.forEach((item, index) => {
@@ -170,22 +169,22 @@
                 }
 
                 const card = document.createElement('div');
-                card.className = "bg-white p-3.5 rounded-2xl border border-slate-100 shadow-sm flex items-center justify-between";
+                card.className = "bg-slate-900 p-3.5 rounded-2xl border border-slate-800 shadow-sm flex items-center justify-between";
                 card.innerHTML = `
                     <div class="flex items-center gap-3">
-                        <div class="w-9 h-9 rounded-xl flex items-center justify-center text-xs ${item.tipe === 'masuk' ? 'bg-emerald-100 text-emerald-600' : 'bg-rose-100 text-rose-600'}">
+                        <div class="w-9 h-9 rounded-xl flex items-center justify-center text-xs ${item.tipe === 'masuk' ? 'bg-emerald-500/20 text-emerald-400' : 'bg-rose-500/20 text-rose-400'}">
                             <i class="fas ${item.tipe === 'masuk' ? 'fa-arrow-down' : 'fa-arrow-up'}"></i>
                         </div>
                         <div>
-                            <h4 class="text-xs font-bold text-slate-800">${item.keterangan}</h4>
+                            <h4 class="text-xs font-bold text-white">${item.keterangan}</h4>
                             <span class="text-[10px] text-slate-400">${item.tanggal}</span>
                         </div>
                     </div>
                     <div class="flex items-center gap-3">
-                        <span class="text-xs font-bold ${item.tipe === 'masuk' ? 'text-emerald-600' : 'text-rose-600'}">
+                        <span class="text-xs font-bold ${item.tipe === 'masuk' ? 'text-emerald-400' : 'text-rose-400'}">
                             ${item.tipe === 'masuk' ? '+' : '-'} ${formatRupiah(item.jumlah)}
                         </span>
-                        <button onclick="hapusTransaksi(${index})" class="text-slate-300 hover:text-red-500 text-xs transition">
+                        <button onclick="hapusTransaksi(${index})" class="text-slate-600 hover:text-red-400 text-xs transition">
                             <i class="fas fa-trash-alt"></i>
                         </button>
                     </div>
@@ -204,13 +203,13 @@
             const statusEl = document.getElementById('statusKeuangan');
             if (statusEl) {
                 if (totalMasuk === 0 && totalKeluar === 0) {
-                    statusEl.className = "mt-2 inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-medium bg-slate-200 text-slate-600";
+                    statusEl.className = "mt-2 inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-medium bg-slate-800 text-slate-400 border border-slate-700";
                     statusEl.innerHTML = 'Belum Ada Aktivitas';
                 } else if (totalMasuk >= totalKeluar) {
-                    statusEl.className = "mt-2 inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-medium bg-emerald-100 text-emerald-700";
+                    statusEl.className = "mt-2 inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-medium bg-emerald-500/20 text-emerald-400 border border-emerald-500/30";
                     statusEl.innerHTML = '✨ Keuangan Aman';
                 } else {
-                    statusEl.className = "mt-2 inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-medium bg-rose-100 text-rose-700";
+                    statusEl.className = "mt-2 inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-medium bg-rose-500/20 text-rose-400 border border-rose-500/30";
                     statusEl.innerHTML = '⚠️ Pengeluaran Tinggi';
                 }
             }
@@ -275,7 +274,6 @@
             });
         }
 
-        // Jalankan saat pertama muat
         updateDashboard();
     </script>
 </body>
