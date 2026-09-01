@@ -439,10 +439,11 @@
             }
         }
 
-        function resetData() {
-            if (confirm("Yakin ingin mereset semua data?")) {
-                transaksiList = [];
-                updateDashboard();
+        function logout() {
+            if (confirm("Keluar dari aplikasi?")) {
+                localStorage.setItem('isLoggedIn', 'false');
+                isLoggedIn = false;
+                cekStatusLogin();
             }
         }
 
