@@ -229,7 +229,7 @@
     <script>
         let transaksiList = JSON.parse(localStorage.getItem('transaksi')) || [];
         // --- Sistem Login Tambahan ---
-        let isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+        let isLoggedIn = false;
         let namaUser = localStorage.getItem('namaUser') || 'Rasyid';
 
         const halamanLogin = document.getElementById('halamanLogin');
