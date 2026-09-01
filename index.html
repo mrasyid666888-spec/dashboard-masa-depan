@@ -30,8 +30,24 @@
 </head>
 <body class="font-sans">
 
-    <div class="mobile-container flex flex-col justify-between pb-24">
-        
+    <div class="mobile-container flex flex-col justify-between pb-24">  
+        <div id="halamanLogin" class="hidden flex-col justify-center items-center p-8 h-full my-auto">
+            <div class="w-16 h-16 bg-sky-500/20 text-sky-400 rounded-3xl flex items-center justify-center text-2xl mb-4 border border-sky-500/30 shadow-lg">
+                <i class="fas fa-wallet"></i>
+            </div>
+            <h1 class="text-xl font-bold text-white mb-1">TabunganKu</h1>
+            <p class="text-xs text-slate-400 mb-6 text-center">Masuk untuk melihat keuangan pribadimu</p>
+            
+            <form id="loginForm" class="w-full space-y-4">
+                <div>
+                    <label class="block text-xs text-slate-400 mb-1">Nama Pengguna</label>
+                    <input type="text" id="inputNama" required placeholder="Masukkan nama kamu" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 text-xs text-white focus:outline-none focus:border-sky-500">
+                </div>
+                <button type="submit" class="w-full bg-sky-600 hover:bg-sky-500 text-white font-bold py-3 rounded-xl text-xs transition shadow-lg shadow-sky-600/30">
+                    Masuk ke Dompet
+                </button>
+            </form>
+        </div>
         <div id="tabHome" class="tab-content">
             <div id="headerBox" class="theme-header p-6 rounded-b-[2.5rem] border-b border-slate-800 shadow-md">
                 <div class="flex justify-between items-center mb-6">
