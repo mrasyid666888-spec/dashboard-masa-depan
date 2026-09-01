@@ -482,7 +482,7 @@
 
         function logout() {
             if (confirm("Keluar dari aplikasi?")) {
-                localStorage.setItem('isLoggedIn', 'false');
+                sessionStorage.setItem('isLoggedIn', 'false');
                 isLoggedIn = false;
                 cekStatusLogin();
             }
