@@ -187,7 +187,46 @@
 
     <script>
         let transaksiList = JSON.parse(localStorage.getItem('transaksi')) || [];
+        // --- Sistem Login Tambahan ---
+        let isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+        let namaUser = localStorage.getItem('namaUser') || 'Rasyid';
 
+        const halamanLogin = document.getElementById('halamanLogin');
+        const tabHome = document.getElementById('tabHome');
+        const tabRekap = document.getElementById('tabRekap');
+        const navBarBawah = document.getElementById('navBarBawah');
+        const loginForm = document.getElementById('loginForm');
+        const inputNama = document.getElementById('inputNama');
+
+        function cekStatusLogin() {
+            if (isLoggedIn) {
+                halamanLogin.classList.add('hidden');
+                tabHome.classList.remove('hidden');
+                navBarBawah.classList.remove('hidden');
+                const headerTitle = document.querySelector('#tabHome h1');
+                if(headerTitle) headerTitle.innerHTML = `Halo, ${namaUser}! 👋`;
+                updateDashboard();
+            } else {
+                tabHome.classList.add('hidden');
+                tabRekap.classList.add('hidden');
+                navBarBawah.classList.add('hidden');
+                halamanLogin.classList.remove('hidden');
+                halamanLogin.classList.add('flex');
+            }
+        }
+
+        if(loginForm) {
+            loginForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                if(inputNama.value.trim() !== '') {
+                    namaUser = inputNama.value.trim();
+                    localStorage.setItem('namaUser', namaUser);
+                    localStorage.setItem('isLoggedIn', 'true');
+                    isLoggedIn = true;
+                    cekStatusLogin();
+                }
+            });
+        }
         const form = document.getElementById('transaksiForm');
         const keteranganInput = document.getElementById('keterangan');
         const jumlahInput = document.getElementById('jumlah');
