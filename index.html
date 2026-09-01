@@ -229,7 +229,7 @@
     <script>
         let transaksiList = JSON.parse(localStorage.getItem('transaksi')) || [];
         // --- Sistem Login Tambahan ---
-        let isLoggedIn = false;
+       let isLoggedIn = sessionStorage.getItem('isLoggedIn') === 'true';
         let namaUser = localStorage.getItem('namaUser') || 'Rasyid';
 
         const halamanLogin = document.getElementById('halamanLogin');
@@ -262,7 +262,7 @@
                 if(inputNama.value.trim() !== '') {
                     namaUser = inputNama.value.trim();
                     localStorage.setItem('namaUser', namaUser);
-                    localStorage.setItem('isLoggedIn', 'true');
+                    sessionStorage.setItem('isLoggedIn', 'true'); // <-- Ubah localStorage jadi sessionStorage di sini
                     isLoggedIn = true;
                     cekStatusLogin();
                 }
