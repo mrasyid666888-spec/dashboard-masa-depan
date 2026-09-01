@@ -14,14 +14,15 @@
             transition: background 0.3s ease;
         }
         .mobile-container {
-            max-width: 480px;
-            margin: auto;
-            min-height: 100vh;
-            background-color: var(--bg-utama, #1e293b);
-            position: relative;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
-            transition: background 0.3s ease;
-        }
+    max-width: 480px;
+    margin: auto;
+    min-height: 100vh;
+    background-color: rgba(15, 23, 42, 0.75); /* <-- Ubah jadi semi-transparan */
+    backdrop-filter: blur(10px); /* <-- Biar ada efek kaca buram yang mewah */
+    position: relative;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+    transition: background 0.3s ease;
+}
         .theme-header {
             background-color: var(--bg-header, #0f172a) !important;
             transition: background 0.3s ease;
