@@ -31,22 +31,48 @@
 <body class="font-sans">
 
     <div class="mobile-container flex flex-col justify-between pb-24">  
-        <div id="halamanLogin" class="hidden flex-col justify-center items-center p-8 h-full my-auto">
-            <div class="w-16 h-16 bg-sky-500/20 text-sky-400 rounded-3xl flex items-center justify-center text-2xl mb-4 border border-sky-500/30 shadow-lg">
-                <i class="fas fa-wallet"></i>
-            </div>
-            <h1 class="text-xl font-bold text-white mb-1">TabunganKu</h1>
-            <p class="text-xs text-slate-400 mb-6 text-center">Masuk untuk melihat keuangan pribadimu</p>
-            
-            <form id="loginForm" class="w-full space-y-4">
-                <div>
-                    <label class="block text-xs text-slate-400 mb-1">Nama Pengguna</label>
-                    <input type="text" id="inputNama" required placeholder="Masukkan nama kamu" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 text-xs text-white focus:outline-none focus:border-sky-500">
+        <!-- Halaman Login yang Lebih Estetik & Keren -->
+        <div id="halamanLogin" class="hidden flex-col justify-center items-center p-6 h-full my-auto animate-fade-in">
+            <div class="w-full max-w-sm bg-slate-900/80 backdrop-blur-xl border border-slate-800 p-8 rounded-3xl shadow-2xl relative overflow-hidden">
+                
+                <!-- Efek Glow di Background Kartu -->
+                <div class="absolute -top-12 -right-12 w-32 h-32 bg-sky-500/20 rounded-full blur-2xl pointer-events-none"></div>
+                <div class="absolute -bottom-12 -left-12 w-32 h-32 bg-blue-600/20 rounded-full blur-2xl pointer-events-none"></div>
+
+                <!-- Header Logo & Judul -->
+                <div class="relative z-10 text-center flex flex-col items-center mb-6">
+                    <div class="w-16 h-16 bg-gradient-to-tr from-sky-600 to-cyan-400 text-white rounded-2xl flex items-center justify-center text-2xl mb-4 shadow-lg shadow-sky-500/30 border border-sky-400/30">
+                        <i class="fas fa-wallet"></i>
+                    </div>
+                    <h1 class="text-xl font-extrabold text-white tracking-wide">TabunganKu</h1>
+                    <p class="text-xs text-slate-400 mt-1">Kelola keuangan masa depan dengan lebih cerdas</p>
                 </div>
-                <button type="submit" class="w-full bg-sky-600 hover:bg-sky-500 text-white font-bold py-3 rounded-xl text-xs transition shadow-lg shadow-sky-600/30">
-                    Masuk ke Dompet
-                </button>
-            </form>
+                
+                <!-- Form Login -->
+                <form id="loginForm" class="relative z-10 space-y-4">
+                    <div>
+                        <label class="block text-[11px] font-semibold text-slate-400 uppercase tracking-wider mb-2">Nama Pengguna</label>
+                        <div class="relative">
+                            <span class="absolute inset-y-0 left-0 flex items-center pl-3.5 text-slate-500">
+                                <i class="fas fa-user-circle text-sm"></i>
+                            </span>
+                            <input type="text" id="inputNama" required placeholder="Contoh: Rasyid" class="w-full bg-slate-950/60 border border-slate-800 rounded-xl pl-10 pr-4 py-3 text-xs text-white placeholder-slate-600 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 transition">
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="w-full bg-gradient-to-r from-sky-600 to-cyan-500 hover:from-sky-500 hover:to-cyan-400 text-white font-bold py-3.5 rounded-xl text-xs transition shadow-lg shadow-sky-600/30 active:scale-[0.98]">
+                        Masuk ke Dompet <i class="fas fa-arrow-right ml-1.5 text-[10px]"></i>
+                    </button>
+                </form>
+
+                <!-- Footer Kecil di Kartu -->
+                <div class="relative z-10 text-center mt-6 pt-4 border-t border-slate-800/60">
+                    <span class="text-[10px] text-slate-500 flex items-center justify-center gap-1">
+                        <i class="fas fa-shield-alt text-emerald-400"></i> Data aman tersimpan di browser kamu
+                    </span>
+                </div>
+
+            </div>
         </div>
         <div id="tabHome" class="tab-content">
             <div id="headerBox" class="theme-header p-6 rounded-b-[2.5rem] border-b border-slate-800 shadow-md">
