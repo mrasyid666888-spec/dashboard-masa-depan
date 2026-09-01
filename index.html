@@ -26,9 +26,18 @@
             background-color: var(--bg-header, #0f172a) !important;
             transition: background 0.3s ease;
         }
+        @keyframes animate-gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .bg-animate-gradient {
+            background-size: 200% 200%;
+            animation: animate-gradient 12s ease infinite;
+        }
     </style>
 </head>
-<body class="font-sans">
+<body class="font-sans min-h-screen bg-animate-gradient bg-gradient-to-br from-slate-950 via-indigo-950 to-slate-900">
 
     <div class="mobile-container flex flex-col justify-between pb-24">  
         <!-- Halaman Login yang Lebih Estetik & Keren -->
