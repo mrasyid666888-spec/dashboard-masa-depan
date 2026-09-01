@@ -17,10 +17,9 @@
     max-width: 480px;
     margin: auto;
     min-height: 100vh;
-    background-color: rgba(15, 23, 42, 0.75); /* <-- Ubah jadi semi-transparan */
-    backdrop-filter: blur(10px); /* <-- Biar ada efek kaca buram yang mewah */
+    background-color: transparent; /* <-- Bikin transparan total */
     position: relative;
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+    box-shadow: none;
     transition: background 0.3s ease;
 }
         .theme-header {
@@ -38,7 +37,7 @@
         }
     </style>
 </head>
-<body class="font-sans min-h-screen bg-animate-gradient bg-gradient-to-br from-slate-950 via-indigo-950 to-slate-900">
+<body class="font-sans min-h-screen bg-animate-gradient bg-gradient-to-br from-indigo-900 via-purple-900 to-slate-950">
 
     <div class="mobile-container flex flex-col justify-between pb-24">  
         <!-- Halaman Login yang Lebih Estetik & Keren -->
