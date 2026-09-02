@@ -218,28 +218,26 @@
 
         <!-- Floating Dock Bottom Navigation -->
 <div class="absolute bottom-4 left-4 right-4 z-50">
-    <div class="bg-slate-900/80 backdrop-blur-2xl border border-slate-700/50 p-2 rounded-3xl shadow-2xl flex justify-between items-center px-4">
+    <div class="bg-slate-900/90 backdrop-blur-xl border border-slate-700/60 p-2 rounded-2xl shadow-2xl flex justify-between items-center px-4">
         
         <!-- Tombol Home -->
-        <button onclick="pindahTab('home')" id="navHome" class="flex items-center gap-2 px-4 py-2.5 rounded-2xl bg-gradient-to-r from-emerald-500/20 to-sky-500/20 border border-emerald-500/30 text-emerald-400 transition-all duration-300 shadow-sm">
+        <button onclick="pindahTab('home')" id="navHome" class="flex items-center gap-2 px-4 py-2 rounded-xl bg-sky-500/20 border border-sky-500/30 text-sky-400 transition-all duration-300">
             <i class="fas fa-home text-xs"></i>
             <span class="text-xs font-bold tracking-wide">Home</span>
         </button>
 
         <!-- Tombol Rekapan -->
-        <button onclick="pindahTab('rekap')" id="navRekap" class="flex items-center justify-center w-11 h-11 rounded-2xl bg-slate-800/60 hover:bg-slate-800 border border-slate-700/60 text-slate-400 hover:text-sky-400 transition-all duration-300">
-            <i class="fas fa-chart-bar text-sm"></i>
+        <button onclick="pindahTab('rekap')" id="navRekap" class="flex items-center justify-center w-10 h-10 rounded-xl bg-slate-800/80 hover:bg-slate-800 border border-slate-700/60 text-slate-400 hover:text-sky-400 transition-all duration-300">
+            <i class="fas fa-chart-bar text-xs"></i>
         </button>
 
         <!-- Tombol Reset -->
-        <button onclick="resetData()" class="flex items-center justify-center w-11 h-11 rounded-2xl bg-slate-800/60 hover:bg-rose-500/20 border border-slate-700/60 hover:border-rose-500/30 text-slate-400 hover:text-rose-400 transition-all duration-300">
-            <i class="fas fa-trash-alt text-sm"></i>
+        <button onclick="resetData()" class="flex items-center justify-center w-10 h-10 rounded-xl bg-slate-800/80 hover:bg-rose-500/20 border border-slate-700/60 hover:border-rose-500/30 text-slate-400 hover:text-rose-400 transition-all duration-300">
+            <i class="fas fa-trash-alt text-xs"></i>
         </button>
 
     </div>
 </div>
-
-    </div>
 
     <div id="modalTransaksi" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 hidden flex items-end sm:items-center justify-center p-0 sm:p-4">
         <div class="bg-slate-900 border border-slate-800 w-full max-w-sm rounded-t-[2rem] sm:rounded-3xl p-6 shadow-2xl">
